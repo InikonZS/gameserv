@@ -104,7 +104,7 @@ function createHTTPS(port: number, listener: http.RequestListener){
 
   httpsServer.addContext('inikon.online', credentials);
   httpsServer.listen(port, () => {
-    console.log('HTTPS Server running on port 4434');
+    console.log(`HTTPS Server running on port ${port}`);
   });
   return httpsServer;
 }
