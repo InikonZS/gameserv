@@ -6,7 +6,7 @@ import { Pawn } from './figures/pawn';
 import { ICellCoord } from './icell-coord';
 import { IField } from './ifield';
 import { IMove } from './imove';
-import { IPosition } from './iposition';
+import { IPosition } from './iPosition';
 import { IVector } from './ivector';
 
 export class Move implements IMove {

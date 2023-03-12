@@ -1,7 +1,7 @@
 import { Figures } from './figures';
 import { ICellCoord } from './icell-coord';
 import { IFigure } from './ifigure';
-import { IPosition } from './iposition';
+import { IPosition } from './iPosition';
 
 // TODO: переделать систему хранения. Сейчас одинаковые координаты могут дать разные объекты, т.е. разный ключ
 export class Position implements IPosition {

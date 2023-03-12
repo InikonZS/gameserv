@@ -4,7 +4,7 @@ import { ChessColor } from './chess-color';
 import { Figures } from './figures';
 import { ICellCoord } from './icell-coord';
 import { IFigure } from './ifigure';
-import { IPosition } from './iposition';
+import { IPosition } from './iPosition';
 import { Moves } from './moves';
 
 export interface IField {

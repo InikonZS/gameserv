@@ -7,7 +7,7 @@ import { King } from './figures/king';
 import { ICellCoord } from './icell-coord';
 import { IField } from './ifield';
 import { IFigure } from './ifigure';
-import { IPosition } from './iposition';
+import { IPosition } from './iPosition';
 import { Moves } from './moves';
 import { Position } from './position';
 

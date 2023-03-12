@@ -4,7 +4,7 @@ import { COMMON } from './common';
 import { Field } from './field';
 import { ICastlingData } from './icastling-data';
 import { IField } from './ifield';
-import { IPosition } from './iposition';
+import { IPosition } from './iPosition';
 import { Move } from './move'
 
 export class CastlingMove extends Move {
