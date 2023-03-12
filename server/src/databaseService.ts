@@ -11,7 +11,9 @@ export class DatabaseService {
     return new Promise((resolve, reject) => {
       let mongo = new MongoClient(url, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        tlsAllowInvalidHostnames: true,
+        tlsAllowInvalidCertificates: true,
       });
 
       mongo.connect().then(() => {

@@ -1,8 +1,10 @@
 import { adminService } from './adminService';
 import { statService } from './statService';
 import http from 'http';
+import https from 'https';
 import { authService } from './authService';
 import { router } from './httpRouter';
+import fs from 'fs';
 
 function paramsParser(paramsString: string): any {
   let params = {};
@@ -59,7 +61,8 @@ class Server {
         adminService.start(router).then(()=>{
           console.log('admin Service Started')
         })
-        this.server = http.createServer((req, res)=>this.processRequest(req, res)).listen(port);
+        this.server = createHTTPS(port, (req, res)=>this.processRequest(req, res));
+        //http.createServer((req, res)=>this.processRequest(req, res)).listen(port);
         return true;
       } else {
         throw new Error("Auth service start error.");
@@ -82,3 +85,27 @@ function parseBody (req): Promise<string> {
   }); 
   })
 }
+
+function createHTTP(port: number, listener: http.RequestListener){
+  return http.createServer((req, res)=>listener).listen(port);
+}
+
+function createHTTPS(port: number, listener: http.RequestListener){
+  const privateKey1 = fs.readFileSync('/etc/letsencrypt/live/inikon.online/privkey.pem', 'utf8');
+  const certificate1 = fs.readFileSync('/etc/letsencrypt/live/inikon.online/cert.pem', 'utf8');
+  const ca1 = fs.readFileSync('/etc/letsencrypt/live/inikon.online/chain.pem', 'utf8');
+  const credentials = {
+    key: privateKey1,
+    cert: certificate1,
+    ca: ca1
+  };
+
+  const httpsServer = https.createServer(credentials, listener);
+
+  httpsServer.addContext('inikon.online', credentials);
+  httpsServer.listen(port, () => {
+    console.log('HTTPS Server running on port 4434');
+  });
+  return httpsServer;
+}
+
